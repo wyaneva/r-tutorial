@@ -1,0 +1,59 @@
+# load data
+library(ggplot2)
+data(diamonds)
+summary(diamonds)
+str(diamonds)
+?diamonds
+
+# plot a histogram of the price
+ggplot(aes(x=price), data=diamonds) +
+       geom_histogram(binwidth=1000, color="black", fill="#099DD9")
+
+# look at some summaries of the price
+summary(diamonds$price)
+sum(diamonds$price<500)
+sum(diamonds$price<250)
+sum(diamonds$price>=15000)
+
+# save the histogram in a file
+ggplot(aes(x=price), data=diamonds) +
+       geom_histogram(binwidth=1000, color="black", fill="#099DD9") +
+       ggsave("priceHistogram.pdf")
+
+# show price by cut
+ggplot(aes(x=price), data=diamonds) +
+       geom_histogram(binwidth=1000, color="black", fill="#099DD9") +
+       facet_wrap(~cut)
+
+# check summary of price per cut
+by(diamonds$price, diamonds$cut, summary)
+
+# let the y axis auto adjust for different facets
+ggplot(aes(x=price), data=diamonds) +
+       geom_histogram(binwidth=1000, color="black", fill="#099DD9") +
+       facet_wrap(~cut, scales="free_y")
+
+# show price per carat
+ggplot(aes(x=price/carat), data=diamonds) +
+       geom_histogram(color="black", fill="#099DD9") +
+       facet_wrap(~cut, scales="free_y")
+
+# show price per carat on log scale
+ggplot(aes(x=price/carat), data=diamonds) +
+       geom_histogram(color="black", fill="#099DD9") +
+       facet_wrap(~cut, scales="free_y") +
+       scale_x_log10()
+
+# do box plots per cut
+ggplot(aes(x=cut, y=price), data=diamonds) +
+       geom_boxplot() +
+       coord_cartesian(ylim=c(0,10000))
+
+# do different colours for the different boxes
+ggplot(aes(x=cut, y=price, fill=cut), data=diamonds) +
+geom_boxplot() +
+coord_cartesian(ylim=c(0,10000))
+
+# check summary of price per color
+by(diamonds$price, diamonds$color, summary)
+IQR(subset(diamonds, diamonds$color=="J")$price)
