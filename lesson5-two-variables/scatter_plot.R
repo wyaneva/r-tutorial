@@ -1,3 +1,5 @@
+#!/usr/bin/Rscript
+
 library(ggplot2)
 pf <- read.csv('pseudo_facebook.tsv', sep='\t')
 summary(pf)
