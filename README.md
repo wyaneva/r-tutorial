@@ -8,3 +8,13 @@ Useful R resources:
 * [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml)
 * [Cheat Sheets](https://www.rstudio.com/resources/cheatsheets/)
 * [Data Wrangling in R](https://s3.amazonaws.com/udacity-hosted-downloads/ud651/DataWranglingWithR.pdf)
+
+Topics covered:
+* Single variable:
+  * histograms
+  * frequency polygons
+  * boxplots
+
+* Two variables:  
+  * scatter plot
+  * correlation: cor.test
